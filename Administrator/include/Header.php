@@ -1,7 +1,7 @@
 <?php
 session_start();
 // require_once(".../connect.php");
-require_once("C:\\xampp\\htdocs\\Online Hotel Management System Web App\connect.php");
+require_once("../../connect.php");
 if(!isset($_SESSION['KEY']))
 {
    // echo "<script>location.assign('logout.php');</script>"

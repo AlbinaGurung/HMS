@@ -1,7 +1,7 @@
 <?php
 require_once("../include/Header.php");
 require_once("../include/Navigation.php");
-require_once("../../connect.php");
+
 ?>
 <form action="" method="post">
 <div class="container-fluid my-4">
@@ -75,21 +75,23 @@ require_once("../../connect.php");
 
 <!-- hi -->
 <?php
+require_once("../../connect.php");
 if(isset($_POST['submit']))
 {
-  $name=$_POST['name'];
-  $gender=$_POST['gender'];
-  $address=$_POST['address'];
-  $phone=$_POST['phone'];
-  $email=$_POST['email'];
-  $noofindividuals=$_POST['noofindividuals'];
-  $roomtype=$_POST['roomtype'];
-  $roomno=$_POST['roomno'];
-  $date=$_POST['date'];
+  $name=mysqli_real_escape_string($connection,$_POST['name']);
+  $gender=mysqli_real_escape_string($connection,$_POST['gender']);
+  $address=mysqli_real_escape_string($connection,$_POST['address']);
+  $phone=mysqli_real_escape_string($connection,$_POST['phone']);
+  $email=mysqli_real_escape_string($connection,$_POST['email']);
+  $noofindividuals=mysqli_real_escape_string($connection,$_POST['noofindividuals']);
+  $roomtype=mysqli_real_escape_string($connection,$_POST['roomtype']);
+  $roomno=mysqli_real_escape_string($connection,$_POST['roomno']);
+  $date=mysqli_real_escape_string($connection,$_POST['date']);
+  var_dump($name);
 
-  $sql="INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Date`) 
-  VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$date')";
-  mysqli_Query($connection,$sql);
+  mysqli_query($connection,"INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Date`) 
+  VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$date')");
+  // mysqli_Query($connection,$sql) or die(mysqli_error($connection));
  
   
 }
@@ -98,4 +100,4 @@ if(isset($_POST['submit']))
 
 <?php
 require_once("../include/Footer.php");
-?>
+ ?>  
