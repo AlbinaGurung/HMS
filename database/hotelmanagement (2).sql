@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2023 at 11:16 AM
+-- Generation Time: Apr 07, 2023 at 05:00 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -63,6 +63,32 @@ CREATE TABLE `checked_in` (
   `No_Of_Individuals` int(11) NOT NULL,
   `RoomNo` varchar(30) NOT NULL,
   `RoomType` varchar(30) NOT NULL,
+  `Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `checked_in`
+--
+
+INSERT INTO `checked_in` (`ID`, `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Date`) VALUES
+(4, 'Albina', 'female', 'btm', 'albina@gmail.com', '9806068043', 1, 'A100', 'single', '2023-07-04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `checked_out`
+--
+
+CREATE TABLE `checked_out` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `Gender` varchar(30) NOT NULL,
+  `Address` varchar(30) NOT NULL,
+  `Email` varchar(30) NOT NULL,
+  `Phone` char(10) NOT NULL,
+  `No_Of_Individuals` int(11) NOT NULL,
+  `RoomType` varchar(30) NOT NULL,
+  `RoomName` varchar(30) NOT NULL,
   `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -130,6 +156,12 @@ ALTER TABLE `checked_in`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `checked_out`
+--
+ALTER TABLE `checked_out`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
@@ -155,7 +187,13 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `checked_in`
 --
 ALTER TABLE `checked_in`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `checked_out`
+--
+ALTER TABLE `checked_out`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rooms`
