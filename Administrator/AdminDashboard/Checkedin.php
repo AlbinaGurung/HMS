@@ -1,6 +1,8 @@
 <?php
 require_once("../include/Header.php");
 require_once("../include/Navigation.php");
+
+
 ?>
 <br>
 <br>
@@ -27,9 +29,11 @@ require_once("../include/Navigation.php");
              <th scope="col">No_Of_Individuals</th>
              <th scope="col">RoomNo</th>
              <th scope="col">RoomType</th>
-            <th scope="col">Date</th>
+            <th scope="col">Check_In_Date</th>
             <th scope="col">Action</th>
-            <th scope="col">Check out</th>
+            <th scope="col">Status</th>
+            <th scope="col">Check_Out_Date</th>
+           
             
             </tr>
             </thead>
@@ -43,6 +47,8 @@ require_once("../include/Navigation.php");
             {
                 while($row=mysqli_fetch_assoc($fetchdata))
                 {
+                  
+                 
                     ?>
                     <tr>
                     <td><?php echo $row['ID']?></td>
@@ -54,12 +60,32 @@ require_once("../include/Navigation.php");
                     <td><?php echo $row['No_Of_Individuals']?></td>
                     <td><?php echo $row['RoomNo']?></td>
                     <td><?php echo $row['RoomType']?></td>
-                    <td><?php echo $row['Date']?></td>
+                    <td><?php echo $row['Check_In_Date']?></td>
                     <td><button type="button" class="btn btn-danger" name="delete_btn" >Delete</button>
                     <a href="CheckinEdit.php?id=<?= $row['ID'] ?>" class="btn btn-primary" name="Edit_btn">Edit</a></td>
-                    <td><a href="NewCheckout.php?id=<?= $row['ID'] ?>" class="btn btn-success" name="checkout_btn" >Check Out</a></td>
-                </tr>
+                    <td><?php echo $row['Status']?></td>
+                   <?php
+                        
+                    if($row['Status']=="checked in")
+                    {
+                        ?>
+                        <td><a href="NewCheckout.php?id=<?= $row['ID'] ?>" class="btn btn-success" name="checkout_btn" >Check Out</a></td>
+                        <?php
+                    }
+                    elseif($row['Status']=="checked out")
+                    {
+                        ?>
+                        <td>checked out</td>
+                        <?php
+                    }
+                    else
+                    {
+
+                    }
+                    ?>
+                
                     <?php
+               
                 }
             } 
             ?>
@@ -71,6 +97,6 @@ require_once("../include/Navigation.php");
     </div>
     </div>
 </div>
-<?
-require_once("../include/Footer.php")
+<?php
+require_once("../include/Footer.php");
 ?>

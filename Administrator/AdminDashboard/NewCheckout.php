@@ -18,20 +18,14 @@ $customer=getCustomerById($customerId);
 <?php
 if(isset($_POST['checkout_btn']))
 {
-    $id=mysqli_real_escape_string($connection,$_POST['id']);
-    $name=mysqli_real_escape_string($connection,$_POST['name']);
-    $gender=mysqli_real_escape_string($connection,$_POST['gender']);
-    $address=mysqli_real_escape_string($connection,$_POST['address']);
-    $phone=mysqli_real_escape_string($connection,$_POST['phone']);
-    $email=mysqli_real_escape_string($connection,$_POST['email']);
-    $noofindividuals=mysqli_real_escape_string($connection,$_POST['noofindividuals']);
-    $roomtype=mysqli_real_escape_string($connection,$_POST['roomtype']);
-    $roomno=mysqli_real_escape_string($connection,$_POST['roomno']);
-    $date=mysqli_real_escape_string($connection,$_POST['checkout_date']);
+ 
+  $date=mysqli_real_escape_string($connection,$_POST['checkout_date']);
 
-    $sql="INSERT INTO `checked_out` (`ID`, `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomType`, `RoomName`, `Date`) 
-    VALUES (NULL, $name, $gender, $address, $email, $phone, $noofindividuals, $roomtype, $roomno, $date)";
-    mysqli_query($connection,$sql);
+
+  
+
+mysqli_query($connection,"UPDATE `checked_in` SET `Status` = 'checked out' ,`Check_Out_Date`=$date WHERE `checked_in`.`ID` = $customer[ID];");
+  
 }
 ?>
 
@@ -64,7 +58,7 @@ if(isset($_POST['checkout_btn']))
 
                       <div class="col-md-6">
                         <label for="Phone">Phone</label>
-                        <input  class="form-control" type="phone" placeholder="Phone" name="Phone" value="<?=$customer['Phone']?>">
+                        <input  class="form-control" type="phone" placeholder="phone" name="phone" value="<?=$customer['Phone']?>">
                       </div>
 
                    
@@ -90,7 +84,7 @@ if(isset($_POST['checkout_btn']))
                         </div>
                         <div class="col-md-6">
                         <label for="date">Check in Date</label>
-                        <input type="date" placeholder="Date" name="date"  class="form-control" value="<?=$customer['Date']?>">
+                        <input type="date" placeholder="Date" name="date"  class="form-control" value="<?=$customer['Check_In_Date']?>">
 
                         </div>
                         <label for="date">Check out Date</label>
@@ -102,7 +96,7 @@ if(isset($_POST['checkout_btn']))
                 </div>
             
             <div class="card-footer">
-             <button type="checkout_btn" class="btn btn-primary" >Check out</button>
+             <button name="checkout_btn" class="btn btn-primary" >Check out</button>
             </div>
           </div>
         </div>

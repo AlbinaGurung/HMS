@@ -22,9 +22,9 @@ require_once("../include/Navigation.php");
                       </div>
                       <div class="col-md-6">
                         <label for="gender">Gender</label><br>
-                        <input type="radio" name="Gender" id="gender" value="Male"> Male
-                        <input type="radio" name="Gender" id="gender" value="Female"> Female
-                        <input type="radio" name="Gender" id="gender" value="Other"> Other
+                        <input type="radio" name="gender" id="gender" value="Male"> Male
+                        <input type="radio" name="gender" id="gender" value="Female"> Female
+                        <input type="radio" name="gender" id="gender" value="Other"> Other
 
                       </div>
                       <div class="col-md-6">
@@ -34,7 +34,7 @@ require_once("../include/Navigation.php");
 
                       <div class="col-md-6">
                         <label for="Phone">Phone</label>
-                        <input  class="form-control" type="phone" placeholder="Phone" name="Phone">
+                        <input  class="form-control" type="phone" placeholder="Phone" name="phone">
                       </div>
 
                    
@@ -60,13 +60,13 @@ require_once("../include/Navigation.php");
                         </div>
                         <div class="col-md-6">
                         <label for="date">Date</label>
-                        <input type="date" placeholder="Date" name="date"  class="form-control">
+                        <input type="check_in_date" placeholder="Date" name="check_in_date"  class="form-control">
                         </div>
                    </div>
                 </div>
             
             <div class="card-footer">
-             <button type="submit" class="btn btn-primary" >Check in</button>
+             <button  class="btn btn-primary" name="check_in" value="True">Check in</button>
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@ require_once("../include/Navigation.php");
 <!-- hi -->
 <?php
 require_once("../../connect.php");
-if(isset($_POST['submit']))
+if(isset($_POST['check_in']))
 {
   $name=mysqli_real_escape_string($connection,$_POST['name']);
   $gender=mysqli_real_escape_string($connection,$_POST['gender']);
@@ -86,11 +86,12 @@ if(isset($_POST['submit']))
   $noofindividuals=mysqli_real_escape_string($connection,$_POST['noofindividuals']);
   $roomtype=mysqli_real_escape_string($connection,$_POST['roomtype']);
   $roomno=mysqli_real_escape_string($connection,$_POST['roomno']);
-  $date=mysqli_real_escape_string($connection,$_POST['date']);
-  var_dump($name);
+  $check_in_date=mysqli_real_escape_string($connection,$_POST['check_in_date']);
+ $status="checked in";
 
-  mysqli_query($connection,"INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Date`) 
-  VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$date')");
+
+  mysqli_query($connection,"INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Check_In_Date`,`Status`,`Check_Out_Date`) 
+  VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$check_in_date','$status',NULL)") or die(mysqli_error($connection));
   // mysqli_Query($connection,$sql) or die(mysqli_error($connection));
  
   

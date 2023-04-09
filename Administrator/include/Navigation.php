@@ -26,7 +26,7 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="AdminDashboard/Checkout.php">Check Out</a>
+        <a class="nav-link" href="../AdminDashboard/Checkout.php">Check Out</a>
       </li>
 
       <li class="nav-item">
