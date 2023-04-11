@@ -63,7 +63,7 @@ require_once("../include/Navigation.php");
                     <td><?php echo $row['Check_In_Date']?></td>
                     <td><button type="button" class="btn btn-danger" name="delete_btn" >Delete</button>
                     <a href="CheckinEdit.php?id=<?= $row['ID'] ?>" class="btn btn-primary" name="Edit_btn">Edit</a></td>
-                    <td><?php echo $row['Status']?></td>
+                    
                    <?php
                         
                     if($row['Status']=="checked in")

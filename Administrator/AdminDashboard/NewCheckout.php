@@ -38,41 +38,41 @@ mysqli_query($connection,"UPDATE `checked_in` SET `Status` = 'checked out' ,`Che
                </div>
                  <div class="card-body">
                    <div class="row">
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label for="id">ID</label>
                         <input type="number" placeholder="ID" name="id" class="form-control" value="<?=$customer['ID']?>">
-                      </div>
+                      </div> -->
                       <div class="col-md-6">
                         <label for="name">Name</label>
                         <input type="text" placeholder="Name" name="name"  class="form-control" value="<?=$customer['Name']?>">
                       </div>
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label for="gender">Gender</label><br>
                         <input type="text" name="gender" class="form-control" value="<?=$customer['Gender']?>">
 
-                      </div>
-                      <div class="col-md-6">
+                      </div> -->
+                      <!-- <div class="col-md-6">
                         <label for="address">Address</label>
                         <input type="text" placeholder="Address" name="address" class="form-control" value="<?=$customer['Address']?>">
-                      </div>
+                      </div> -->
 
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label for="Phone">Phone</label>
                         <input  class="form-control" type="phone" placeholder="phone" name="phone" value="<?=$customer['Phone']?>">
-                      </div>
+                      </div> -->
 
                    
-                      <div class="col-md-6">
+                      <!-- <div class="col-md-6">
                         <label for="email">Email</label>
                         <input type="email"  class="form-control" placeholder="Email" name="email" value="<?=$customer['Email']?>">
-                       </div>
+                       </div> -->
                   
                       
                 
-                       <div class="col-md-6">
+                       <!-- <div class="col-md-6">
                         <label for="noofindividuals">No of Individuals</label>
                         <input type="number" placeholder="No of Individuals"  class="form-control" name="noofindividuals" value="<?=$customer['No_Of_Individuals']?>">
-                       </div>
+                       </div> -->
                 
                        <div class="col-md-6">
                         <label for="roomno">Room No</label>

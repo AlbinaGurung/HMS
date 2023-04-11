@@ -78,8 +78,9 @@ require_once("../include/Navigation.php");
 require_once("../../connect.php");
 if(isset($_POST['check_in']))
 {
+  
   $name=mysqli_real_escape_string($connection,$_POST['name']);
-  $gender=mysqli_real_escape_string($connection,$_POST['gender']);
+  $gender=mysqli_real_escape_string($connection,$_POST['gender']??null);
   $address=mysqli_real_escape_string($connection,$_POST['address']);
   $phone=mysqli_real_escape_string($connection,$_POST['phone']);
   $email=mysqli_real_escape_string($connection,$_POST['email']);
@@ -90,11 +91,12 @@ if(isset($_POST['check_in']))
  $status="checked in";
 
 
+ 
+
   mysqli_query($connection,"INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Check_In_Date`,`Status`,`Check_Out_Date`) 
   VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$check_in_date','$status',NULL)") or die(mysqli_error($connection));
   // mysqli_Query($connection,$sql) or die(mysqli_error($connection));
  
-  
 }
 ?>
 

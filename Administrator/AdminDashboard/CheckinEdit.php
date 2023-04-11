@@ -16,23 +16,27 @@ $customer=getCustomerById($customerId);
 
 ?>
 <?php
-if(isset($_POST['submit']))
+if(isset($_POST['edit']))
 {
-    $id=mysqli_real_escape_string($connection,$_POST['id']);
-    $name=mysqli_real_escape_string($connection,$_POST['name']);
-    $gender=mysqli_real_escape_string($connection,$_POST['gender']);
+  
+  $name=mysqli_real_escape_string($connection,$_POST['name']);
+  $gender=mysqli_real_escape_string($connection,$_POST['gender']);
     $address=mysqli_real_escape_string($connection,$_POST['address']);
     $phone=mysqli_real_escape_string($connection,$_POST['phone']);
     $email=mysqli_real_escape_string($connection,$_POST['email']);
     $noofindividuals=mysqli_real_escape_string($connection,$_POST['noofindividuals']);
     $roomtype=mysqli_real_escape_string($connection,$_POST['roomtype']);
     $roomno=mysqli_real_escape_string($connection,$_POST['roomno']);
-    $date=mysqli_real_escape_string($connection,$_POST['date']);
+    $check_in_date=mysqli_real_escape_string($connection,$_POST['check_in_date']);
+    $status=mysqli_real_escape_string($connection,$_POST['status']);
+ 
     
-    $sql="UPDATE `checked_in` SET `Name` = $name, `Gender` = $gender, `Address` = $address, `Email` = $email, 
-`Phone` = $phone, `No_Of_Individuals` = $noofindividuals, `RoomNo` = $roomno, `RoomType` = $roomtype, `Date` = $date
- WHERE `checked_in`.`ID` = $id;";
- mysqli_query($connection,$sql);
+    $sql="UPDATE `checked_in` SET `Name` = '$name', `Gender` = '$gender', `Address` = '$address', `Phone` = '$phone', `No_Of_Individuals` = '$noofindividuals', 
+
+`RoomNo` = '$roomno', `RoomType` = '$roomtype', `Check_In_Date` = '$check_in_date', `Status` = '$status' WHERE `checked_in`.`ID` = $customerId";
+
+
+ mysqli_query($connection,$sql) or mysqli_errno($connection);
 }
 
 ?>
@@ -46,19 +50,18 @@ if(isset($_POST['submit']))
                </div>
                  <div class="card-body">
                    <div class="row">
-                      <div class="col-md-6">
-                        <label for="id">ID</label>
-                        <input type="number" placeholder="ID" name="id" class="form-control" value="<?=$customer['ID']?>">
-                      </div>
+                     
                       <div class="col-md-6">
                         <label for="name">Name</label>
                         <input type="text" placeholder="Name" name="name"  class="form-control" value="<?=$customer['Name']?>">
                       </div>
                       <div class="col-md-6">
                         <label for="gender">Gender</label><br>
-                        <input type="text" name="gender" class="form-control" value="<?=$customer['Gender']?>">
+                        <input type="radio" name="gender" id="gender" value="Male"> Male
+                        <input type="radio" name="gender" id="gender" value="Female"> Female
+                        <input type="radio" name="gender" id="gender" value="Other"> Other
 
-                      </div>
+                       </div>
                       <div class="col-md-6">
                         <label for="address">Address</label>
                         <input type="text" placeholder="Address" name="address" class="form-control" value="<?=$customer['Address']?>">
@@ -66,7 +69,7 @@ if(isset($_POST['submit']))
 
                       <div class="col-md-6">
                         <label for="Phone">Phone</label>
-                        <input  class="form-control" type="phone" placeholder="Phone" name="Phone" value="<?=$customer['Phone']?>">
+                        <input  class="form-control" type="phone" placeholder="Phone" name="phone" value="<?=$customer['Phone']?>">
                       </div>
 
                    
@@ -92,15 +95,21 @@ if(isset($_POST['submit']))
                         </div>
                         <div class="col-md-6">
                         <label for="date">Check in Date</label>
-                        <input type="date" placeholder="Date" name="date"  class="form-control" value="<?=$customer['Date']?>">
+                        <input type="date" placeholder="Date" name="check_in_date"  class="form-control" value="<?=$customer['Check_In_Date']?>">
 
-                        
+                        </div>
+                        <div class="col-md-6">
+                        <label for="status">Status</label>
+                        <input type="status" placeholder="status" name="status"  class="form-control" value="<?=$customer['Status']?>">
+
+                        </div>
+
 
                    </div>
                 </div>
             
             <div class="card-footer">
-             <button type="submit" class="btn btn-primary" >Edit</button>
+             <button name="edit" class="btn btn-primary" >Edit</button>
             </div>
           </div>
         </div>
