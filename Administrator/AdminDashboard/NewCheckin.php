@@ -66,7 +66,7 @@ require_once("../include/Navigation.php");
                 </div>
             
             <div class="card-footer">
-             <button  class="btn btn-primary" name="check_in" value="True">Check in</button>
+             <a href="NewCheckin.php" class="btn btn-primary" name="check_in" value="True">Check in</a>
             </div>
           </div>
         </div>
@@ -90,13 +90,13 @@ if(isset($_POST['check_in']))
   $check_in_date=mysqli_real_escape_string($connection,$_POST['check_in_date']);
  $status="checked in";
 
-
+ $sql1="UPDATE `rooms` SET `Status` = 'Not Available' WHERE `rooms`.`RoomNo` = roomno;";
  
 
   mysqli_query($connection,"INSERT INTO `checked_in` ( `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Check_In_Date`,`Status`,`Check_Out_Date`) 
   VALUES ('$name', '$gender', '$address', '$email', '$phone', '$noofindividuals', '$roomno', '$roomtype', '$check_in_date','$status',NULL)") or die(mysqli_error($connection));
-  // mysqli_Query($connection,$sql) or die(mysqli_error($connection));
- 
+  mysqli_Query($connection,$sql1) or die(mysqli_error($connection));
+  
 }
 ?>
 

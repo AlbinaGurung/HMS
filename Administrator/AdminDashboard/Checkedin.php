@@ -4,6 +4,15 @@ require_once("../include/Navigation.php");
 
 
 ?>
+<?php
+if(isset($_POST['delete_btn']))
+{
+    $Id=$_GET['id'];
+    $sql="DELETE FROM checked_in WHERE `checked_in`.`ID` = $Id";
+    mysqli_query($connection,$sql) or die(mysqli_error($connection));
+}
+?>
+
 <br>
 <br>
 <div class="container-fluid">
@@ -61,7 +70,7 @@ require_once("../include/Navigation.php");
                     <td><?php echo $row['RoomNo']?></td>
                     <td><?php echo $row['RoomType']?></td>
                     <td><?php echo $row['Check_In_Date']?></td>
-                    <td><button type="button" class="btn btn-danger" name="delete_btn" >Delete</button>
+                    <td><a href="Checkedin.php?id=<?=$row['ID']?>" type="button" class="btn btn-danger" name="delete_btn" >Delete</a>
                     <a href="CheckinEdit.php?id=<?= $row['ID'] ?>" class="btn btn-primary" name="Edit_btn">Edit</a></td>
                     
                    <?php

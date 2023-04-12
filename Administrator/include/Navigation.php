@@ -15,22 +15,22 @@
     <ul class="navbar-nav ms-auto">
       
       <li class="nav-item">
-        <a class="nav-link active" href="AdminDashboard/Home.php">Home</a>
+        <a class="nav-link active" href="../AdminDashboard/Home.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="AdminDashboard/Booked.php">Booked</a>
+        <a class="nav-link " href="../AdminDashboard/Booked.php">Booked</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link " href="/Administrator/AdminDashboard/Checkedin.php">Check In</a>
+        <a class="nav-link " href="/Administrator/AdminDashboard/Checkedin.php">Guests_Info</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="../AdminDashboard/Checkout.php">Check Out</a>
+        <a class="nav-link" href="../AdminDashboard/Checkout.php">Checked_Guests_Info</a>
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="AdminDashboard/Roomcategorylist.php">Room Category List</a>
+        <a class="nav-link" href="../AdminDashboard/Roomcategorylist.php">Rooms_Category</a>
       </li>
       
       <li class="nav-item">
