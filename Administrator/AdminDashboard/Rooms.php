@@ -57,7 +57,17 @@ else{
         </form>
     </div>
     <div class="col-8">
-        <h3>Rooms Details</h3><input type="text" name="search" value="" placeholder="search"> 
+        
+
+
+        <div class="d-flex justify-content-between align-items-center">
+        <h3> Rooms </h3>
+        <form action="">
+            
+            <input type="text" name="search" value="" placeholder="search"> 
+        </form>
+        </div>
+
     <table class="table">
   <thead>
     <tr>
