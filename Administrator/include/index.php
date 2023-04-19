@@ -1,0 +1,11 @@
+<?php
+require_once("include/header.php");
+ require_once("include/Navigation.php");
+if(isset($_GET['view_roomsPage']))
+{
+   require_once("inlude/Rooms.php");
+}
+?>
+<?php
+require_once("include/footer.php");
+?>
