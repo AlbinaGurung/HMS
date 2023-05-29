@@ -4,7 +4,10 @@ require_once("../include/Navigation.php");
 
 require_once("../../connect.php");
 $searchQuery = $_GET['search'] ?? "";
-//$query="SELECT *FROM `checked_in`;";
+// $filter=$_GET['filter']??"";
+// var_dump($filter);
+// var_dump($searchQuery);
+
 $query="select * from `rooms` inner join `checked_in` where `checked_in`.`RoomId`=`rooms`.`RoomId`";
                
 
@@ -12,6 +15,18 @@ if($searchQuery != "")
 {
     $query = "select *From `rooms` inner join `checked_in` where (`checked_in`.`Name` like '$searchQuery%' or `checked_in`.`Phone` like '$searchQuery%') AND `checked_in`.`RoomId`=`rooms`.`RoomId`";
  }
+// else if($filter!="")
+// {
+//  if($filter='checked in')
+//  {
+//     $query="select *From `rooms` inner join `checked_in` where(`checked_in`.`Status`='checked in') AND `checked_in`.`RoomId`=`rooms`.`RoomId`";
+//  }
+//  if($filter='checked out')
+//  {
+//     $query="select *From `rooms` inner join `checked_in` where(`checked_in`.`Status`='checked out') AND `checked_in`.`RoomId`=`rooms`.`RoomId`";
+//  }
+//}
+ 
 $fetchdata = mysqli_query($connection, $query) or die(mysqli_error($connection));
 $IsAnyCustomerAdded = mysqli_num_rows($fetchdata);
 
@@ -23,8 +38,15 @@ $IsAnyCustomerAdded = mysqli_num_rows($fetchdata);
 <div class="container-fluid">
     <div class="d-flex justify-content-between align-items-center">
         <h3> Check Ins </h3>
-        <form action=""><a class="btn btn-primary" href="NewCheckin.php">New Checkin</a>
-
+        <form action="">
+            <a class="btn btn-primary" href="NewCheckin.php">New Checkin</a>
+            <!-- <br> -->
+            <!-- <label for="filter">Filter</label>
+            <select name="filter" id="filter">
+                <option value="checked in">Checked in</option>
+                <option value="checked out">Checked out</option>
+            </select> -->
+            <!-- <br> -->
             <input type="text" name="search" value="<?=$searchQuery?>" placeholder="search"> 
         </form>
     </div>

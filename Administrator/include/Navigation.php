@@ -18,18 +18,18 @@
         <a class="nav-link active" href="../AdminDashboard/Home.php">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link " href="../AdminDashboard/Booked.php">Booked</a>
+        <a class="nav-link active" href="../AdminDashboard/Booked.php">Booked</a>
       </li>
       
       <li class="nav-item">
-        <a class="nav-link " href="/Administrator/AdminDashboard/Checkedin.php">Guests_Info</a>
+        <a class="nav-link active " href="/Administrator/AdminDashboard/Checkedin.php">Guests_Info</a>
       </li>
 
       <!-- <li class="nav-item">
         <a class="nav-link" href="../AdminDashboard/Checkout.php">CheckedOut_Guests</a>
       </li> -->
 
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="../AdminDashboard/Roomcategorylist.php">Rooms_Category</a>
       </li> 
       

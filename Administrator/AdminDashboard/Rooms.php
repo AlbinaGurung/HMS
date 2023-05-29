@@ -86,7 +86,13 @@ else{
 
     <?php
     require_once("../../connect.php");
-    $FetchData=mysqli_Query($connection, "SELECT *FROM rooms") or die(mysqli_error($connection));
+    $searchQuery = $_GET['search'] ?? "";
+    $query= "SELECT *FROM rooms";
+    if($searchQuery!=0)
+    {
+      $query="select *From rooms where RoomName like '$searchQuery%' or RoomType like '$searchQuery%'";
+    }
+    $FetchData=mysqli_Query($connection,$query) or die(mysqli_error($connection));
     $IsAnyRoomAdded = mysqli_num_rows($FetchData);
     if($IsAnyRoomAdded>0)
     {

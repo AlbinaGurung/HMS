@@ -3,14 +3,14 @@ require_once("../../connect.php");
 
 
     $RoomId=$_GET['id'];
-    $query="select * from `rooms` inner join `checked_in` where `checked_in`.`RoomId`=$RoomId";
+    $query="select * from `rooms` inner join `checked_in` where `checked_in`.`RoomId`=$RoomId and `rooms`.`Status`='Not Available'";
     $result=mysqli_query($connection,$query);
     if(mysqli_num_rows($result)>0)
     {
       ?>
    
    <div class="alert alert-danger" role="alert">
-    The room no cannot be deleted!!!
+    The room no cannot be deleted!!! The room is still in use!!!
     </div>
    <?php  
   

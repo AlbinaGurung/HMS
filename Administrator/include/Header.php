@@ -1,6 +1,5 @@
 <?php
 session_start();
-// require_once(".../connect.php");
 require_once("../../connect.php");
 if(!isset($_SESSION['KEY']))
 {

@@ -27,8 +27,8 @@ $room=getRoomById($roomId);
                 <div class="row">
                 <div class="col-md-6 mb-3>
                 
-                <label for="room">Room</label>
-                <input type="text" name="roomid" value="<?=$room['RoomId']?>">
+                <label for="room">Room Name</label>
+                <input type="text" name="roomname" value="<?=$room['RoomName']?>">
                 </div>
 
                 <div class="col-md-6 mb-3>
@@ -42,7 +42,7 @@ $room=getRoomById($roomId);
             </div>
 
             <div class="card-footer">
-                <button  name="edit">Edit</button>
+                <button  name="edit" type="submit">Edit</button>
             </div>
         </div>
     </div>
@@ -54,10 +54,27 @@ if(isset($_POST['edit']))
    
 
     $Category=$_POST['category'];
-    $RoomId=$_POST['roomid'];
-
-   $sql="UPDATE `rooms` SET `RoomId` = '$RoomId', `RoomType` = '$Category' WHERE `rooms`.`RoomId` = '$roomId'";
-   mysqli_query($connection,$sql);
+    $RoomName=$_POST['roomname'];
+    $result=mysqli_query($connection,"select * from rooms where `RoomName`='$RoomName'");
+    $Room=mysqli_num_rows($result);
+     $sql="UPDATE `rooms` SET `RoomName` = '$RoomName', `RoomType` = '$Category' WHERE `rooms`.`RoomId` = '$roomId'";
+    if($Room>0)
+    {
+      ?>
+      <div class="alert alert-danger" role="alert">
+      Cannot edit!!!  The room Name is already taken!!!!
+      </div>
+      <?php 
+    }
+    else
+    {
+       mysqli_query($connection,$sql) or die (mysqli_errno($connection));
+      ?>
+      
+      <script>location.assign("Rooms.php?Edited");</script>
+       
+       <?php
+   }
 }
 ?>
 <?php

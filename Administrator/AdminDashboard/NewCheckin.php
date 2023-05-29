@@ -39,7 +39,7 @@ require_once("../include/Navigation.php");
                         <label for="email">Email</label>
                         <input type="email"  class="form-control" placeholder="Email" name="email" required>
                        </div>
-                  
+ 1                 
                       
                 
                        <div class="col-md-6">
@@ -71,7 +71,7 @@ require_once("../include/Navigation.php");
                             
                           }
                         }
-                        var_dump($room);
+              
                         ?>
                         </select>
                         
@@ -117,8 +117,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST')
   $check_in_date=mysqli_real_escape_string($connection,$_POST['check_in_date']);
  $status="checked in";
 
-  $sql="select * from `checked_in` where `checked_in`.`RoomId`=$roomid";
-  $result=mysqli_query($connection,$sql);
+  $sql="SELECT * FROM `checked_in` WHERE RoomId=$roomid AND `Status`='checked in';";
+  $result=mysqli_query($connection,$sql) or die(mysqli_error($connection));
   $RoomName=mysqli_num_rows($result);
   
  if($RoomName>0)
