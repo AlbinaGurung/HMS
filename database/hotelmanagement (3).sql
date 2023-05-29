@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 07, 2023 at 05:00 PM
+-- Generation Time: May 28, 2023 at 06:51 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -61,36 +61,26 @@ CREATE TABLE `checked_in` (
   `Email` varchar(30) NOT NULL,
   `Phone` char(10) NOT NULL,
   `No_Of_Individuals` int(11) NOT NULL,
-  `RoomNo` varchar(30) NOT NULL,
+  `RoomId` int(11) NOT NULL,
   `RoomType` varchar(30) NOT NULL,
-  `Date` date NOT NULL
+  `Check_In_Date` date NOT NULL,
+  `Status` varchar(20) NOT NULL,
+  `Check_Out_Date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `checked_in`
 --
 
-INSERT INTO `checked_in` (`ID`, `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomNo`, `RoomType`, `Date`) VALUES
-(4, 'Albina', 'female', 'btm', 'albina@gmail.com', '9806068043', 1, 'A100', 'single', '2023-07-04');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `checked_out`
---
-
-CREATE TABLE `checked_out` (
-  `ID` int(11) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `Gender` varchar(30) NOT NULL,
-  `Address` varchar(30) NOT NULL,
-  `Email` varchar(30) NOT NULL,
-  `Phone` char(10) NOT NULL,
-  `No_Of_Individuals` int(11) NOT NULL,
-  `RoomType` varchar(30) NOT NULL,
-  `RoomName` varchar(30) NOT NULL,
-  `Date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+INSERT INTO `checked_in` (`ID`, `Name`, `Gender`, `Address`, `Email`, `Phone`, `No_Of_Individuals`, `RoomId`, `RoomType`, `Check_In_Date`, `Status`, `Check_Out_Date`) VALUES
+(21, 'albina', 'female', 'btm', 'albina@gmail.com', '98060', 1, 0, 'single', '0000-00-00', 'check in', NULL),
+(22, 'Albina Gurung', 'Female', 'Birtamode-7,Jhapa', 'albina@gmail.com', '98060', 1, 5, 'single', '2023-04-16', 'checked out', '2023-04-18'),
+(23, 'Albina Gurung', 'Male', 'Birtamode-7,Jhapa', 'albina@gmail.com', '', 0, 5, '', '2023-04-17', 'checked out', '2023-04-26'),
+(24, 'sandy', 'Male', 'Birtamode-7,Jhapa', 'sandy@gmail.com', '98060', 1, 5, 'single', '2023-04-18', 'checked out', '0000-00-00'),
+(25, 'Albina Gurung', 'Female', 'Birtamode-7,Jhapa', 'albina@gmail.com', '98060', 1, 8, 'single', '2023-04-19', 'checked out', '2023-05-23'),
+(26, 'Albina Gurung', 'Female', 'Birtamode-7,Jhapa', 'albina@gmail.com', '98060', 1, 9, 'single', '2023-04-19', 'checked out', '2023-05-18'),
+(27, 'Albina Gurung', 'Female', 'Birtamode-7,Jhapa', 'albina@gmail.com', '98060', 1, 5, 'single', '2023-05-22', 'checked in', NULL),
+(28, 'Albina Gurung', 'Female', 'Birtamode-7,Jhapa', 'albina@gmail.com', '9806068043', 1, 12, 'single', '2023-05-26', 'checked out', '2023-05-26');
 
 -- --------------------------------------------------------
 
@@ -99,23 +89,45 @@ CREATE TABLE `checked_out` (
 --
 
 CREATE TABLE `rooms` (
-  `ID` int(10) NOT NULL,
-  `Room` varchar(30) NOT NULL,
-  `Category` varchar(30) NOT NULL,
-  `Availability` varchar(30) NOT NULL
+  `RoomId` int(11) NOT NULL,
+  `RoomName` varchar(30) NOT NULL,
+  `RoomType` varchar(30) NOT NULL,
+  `Status` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
-INSERT INTO `rooms` (`ID`, `Room`, `Category`, `Availability`) VALUES
-(2, 'bb', 'bjh', 'yes'),
-(3, 'bb', 'single', 'yes'),
-(4, 'bb', 'single', 'yes'),
-(5, 'bb', 'single', 'yes'),
-(6, 'bbaa', 'twin', 'yes'),
-(7, 'bbaa', 'twin', 'yes');
+INSERT INTO `rooms` (`RoomId`, `RoomName`, `RoomType`, `Status`) VALUES
+(9, 'a106', 'single', 'Not Available'),
+(12, 'a102', 'twin', 'Not Available');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `rooms_category`
+--
+
+CREATE TABLE `rooms_category` (
+  `ID` int(11) NOT NULL,
+  `Room_Category` varchar(30) NOT NULL,
+  `Image` int(11) NOT NULL,
+  `Description` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `rooms_category`
+--
+
+INSERT INTO `rooms_category` (`ID`, `Room_Category`, `Image`, `Description`) VALUES
+(1, 'single', 0, 'ghj'),
+(2, 'single', 2, 'gh'),
+(3, 'single', 2, 'gh'),
+(4, 'single', 2, 'gh'),
+(5, 'single', 2, 'gh'),
+(6, 'single', 2, 'gh'),
+(7, 'single', 2, 'gh');
 
 -- --------------------------------------------------------
 
@@ -156,15 +168,15 @@ ALTER TABLE `checked_in`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `checked_out`
---
-ALTER TABLE `checked_out`
-  ADD PRIMARY KEY (`ID`);
-
---
 -- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`RoomId`);
+
+--
+-- Indexes for table `rooms_category`
+--
+ALTER TABLE `rooms_category`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -187,19 +199,19 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `checked_in`
 --
 ALTER TABLE `checked_in`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `checked_out`
---
-ALTER TABLE `checked_out`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `RoomId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `rooms_category`
+--
+ALTER TABLE `rooms_category`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`
